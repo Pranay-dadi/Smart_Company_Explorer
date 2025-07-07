@@ -51,43 +51,25 @@ const HomePage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-background light:bg-background-light dark:bg-background-dark">
         <div className="flex flex-col items-center">
-          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading Companies...</p>
+          <div className="w-12 h-12 border-4 border-primary light:border-primary-light dark:border-primary-dark border-t-transparent rounded-full animate-spin"></div>
+          <p className="mt-4 text-text light:text-text-light dark:text-text-dark">Loading Companies...</p>
         </div>
       </div>
     );
   }
   if (error) {
-    return <div className="text-center text-red-600">Error: {error}</div>;
+    return <div className="text-center text-error light:text-error-light dark:text-error-dark">Error: {error}</div>;
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-100'} text-gray-900 dark:text-gray-100`}>
+    <div className={`min-h-screen bg-background light:bg-background-light dark:bg-background-dark text-text light:text-text-light dark:text-text-dark ${darkMode ? 'dark' : ''}`}>
       {/* Top Menu Bar */}
-      <header className="bg-white dark:bg-gray-800 shadow sticky top-0 z-20">
+      <header className="bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark shadow sticky top-0 z-20">
         <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <h1 className="text-2xl font-bold">Career PathFinder</h1>
-          <nav className="flex items-center gap-4">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-md ${isActive ? 'bg-blue-600 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`
-              }
-              aria-label="Go to Home"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/companies"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-md ${isActive ? 'bg-blue-600 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`
-              }
-              aria-label="Go to Companies"
-            >
-              Jobs
-            </NavLink>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <h1 className="text-2xl font-bold">Smart Company Explorer</h1>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -96,33 +78,61 @@ const HomePage = () => {
                   window.location.href = `/companies?query=${encodeURIComponent(searchQuery)}`;
                 }
               }}
-              className="relative"
+              className="relative w-full sm:w-auto"
             >
               <input
                 type="text"
                 name="search"
                 placeholder="Search companies or jobs..."
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
+                className="p-2 border border-text/20 light:border-text-light/20 dark:border-text-dark/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary light:focus:ring-primary-light dark:focus:ring-primary-dark bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark text-text light:text-text-light dark:text-text-dark w-full"
                 aria-label="Search companies or jobs"
               />
               <button
                 type="submit"
-                className="absolute right-0 top-0 p-2 text-white bg-blue-500 rounded-r-md hover:bg-blue-600"
+                className="absolute right-0 top-0 p-2 text-background-secondary light:text-background-secondary_light dark:text-background-secondary_dark bg-primary light:bg-primary-light dark:bg-primary-dark rounded-r-md hover:bg-accent light:hover:bg-accent-light dark:hover:bg-accent-dark"
                 aria-label="Submit search"
               >
                 🔍
               </button>
             </form>
+          </div>
+          <nav className="flex items-center gap-4">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded-md ${
+                  isActive
+                    ? 'bg-primary text-background-secondary light:bg-primary-light light:text-background-secondary_light dark:bg-primary-dark dark:text-background-secondary_dark'
+                    : 'hover:bg-accent hover:text-background-secondary light:hover:bg-accent-light light:hover:text-background-secondary_light dark:hover:bg-accent-dark dark:hover:text-background-secondary_dark'
+                }`
+              }
+              aria-label="Go to Home"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/companies"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded-md ${
+                  isActive
+                    ? 'bg-primary text-background-secondary light:bg-primary-light light:text-background-secondary_light dark:bg-primary-dark dark:text-background-secondary_dark'
+                    : 'hover:bg-accent hover:text-background-secondary light:hover:bg-accent-light light:hover:text-background-secondary_light dark:hover:bg-accent-dark dark:hover:text-background-secondary_dark'
+                }`
+              }
+              aria-label="Go to Companies"
+            >
+              Companies
+            </NavLink>
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              className="p-2 rounded-full bg-background text-text light:bg-background-light light:text-text-light dark:bg-background-dark dark:text-text-dark hover:bg-accent hover:text-background-secondary light:hover:bg-accent-light light:hover:text-background-secondary_light dark:hover:bg-accent-dark dark:hover:text-background-secondary_dark transition"
               aria-label="Toggle dark mode"
             >
               {darkMode ? '☀️' : '🌙'}
             </button>
             <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="p-2 bg-blue-500 text-white rounded-md md:hidden"
+              className="p-2 bg-primary text-background-secondary light:bg-primary-light light:text-background-secondary_light dark:bg-primary-dark dark:text-background-secondary_dark rounded-md md:hidden hover:bg-accent light:hover:bg-accent-light dark:hover:bg-accent-dark"
               aria-label="Toggle filter sidebar"
             >
               {isFilterOpen ? 'Hide Filters' : 'Filters'}
@@ -137,7 +147,7 @@ const HomePage = () => {
         <aside
           className={`${
             isFilterOpen ? 'block' : 'hidden'
-          } md:block w-full md:w-64 bg-white dark:bg-gray-800 p-4 rounded-md shadow-md fixed md:static top-0 left-0 h-full z-30 md:z-0 transition-transform duration-300`}
+          } md:block w-full md:w-64 bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark p-4 rounded-md shadow-md fixed md:static top-0 left-0 h-full z-30 md:z-0 transition-transform duration-300`}
         >
           <h2 className="text-xl font-semibold mb-4">Filters</h2>
           <div className="space-y-4">
@@ -149,7 +159,7 @@ const HomePage = () => {
                 value={filters.location}
                 onChange={handleFilterChange}
                 placeholder="e.g., San Francisco"
-                className="w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"
+                className="w-full p-2 border border-text/20 light:border-text-light/20 dark:border-text-dark/20 rounded-md bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark text-text light:text-text-light dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary light:focus:ring-primary-light dark:focus:ring-primary-dark"
                 aria-label="Filter by location"
               />
             </div>
@@ -159,7 +169,7 @@ const HomePage = () => {
                 name="industry"
                 value={filters.industry}
                 onChange={handleFilterChange}
-                className="w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"
+                className="w-full p-2 border border-text/20 light:border-text-light/20 dark:border-text-dark/20 rounded-md bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark text-text light:text-text-light dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary light:focus:ring-primary-light dark:focus:ring-primary-dark"
                 aria-label="Filter by industry"
               >
                 <option value="">All</option>
@@ -174,7 +184,7 @@ const HomePage = () => {
                 name="jobType"
                 value={filters.jobType}
                 onChange={handleFilterChange}
-                className="w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"
+                className="w-full p-2 border border-text/20 light:border-text-light/20 dark:border-text-dark/20 rounded-md bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark text-text light:text-text-light dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary light:focus:ring-primary-light dark:focus:ring-primary-dark"
                 aria-label="Filter by job type"
               >
                 <option value="">All</option>
@@ -185,7 +195,7 @@ const HomePage = () => {
             </div>
             <button
               onClick={applyFilters}
-              className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              className="w-full p-2 bg-primary text-background-secondary light:bg-primary-light light:text-background-secondary_light dark:bg-primary-dark dark:text-background-secondary_dark rounded-md hover:bg-accent light:hover:bg-accent-light dark:hover:bg-accent-dark"
               aria-label="Apply filters"
             >
               Apply Filters
@@ -206,7 +216,7 @@ const HomePage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 py-4 text-center">
+      <footer className="bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark py-4 text-center">
         <p>© 2025 Smart Company Explorer. All rights reserved.</p>
       </footer>
     </div>

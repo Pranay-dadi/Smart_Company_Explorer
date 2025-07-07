@@ -29,8 +29,13 @@ const InfiniteScrollWrapper = ({ fetchData, data, renderItem, type }) => {
       dataLength={items.length}
       next={loadMore}
       hasMore={hasMore}
-      loader={<div className="text-center py-4">Loading...</div>}
-      endMessage={<p className="text-center py-4 text-gray-600">No more {type} to load.</p>}
+      loader={
+        <div className="text-center py-4">
+          <div className="w-8 h-8 border-4 border-primary light:border-primary-light dark:border-primary-dark border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-text light:text-text-light dark:text-text-dark mt-2">Loading more...</p>
+        </div>
+      }
+      endMessage={<p className="text-center py-4 text-text light:text-text-light dark:text-text-dark">No more {type} to load.</p>}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {items.map((item, index) => renderItem(item, index))}

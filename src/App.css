@@ -1,9 +1,36 @@
+/*
+  The following lines require Tailwind CSS to be processed via PostCSS.
+  Make sure your build setup includes Tailwind CSS and PostCSS.
+*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+:root {
+  --primary: #1E88E5;
+  --secondary: #4CAF50;
+  --accent: #F57C00;
+  --background: #F5F5F5;
+  --background-secondary: #FFFFFF;
+  --text: #424242;
+  --error: #D32F2F;
+}
+
+.dark {
+  --primary: #1565C0;
+  --secondary: #388E3C;
+  --accent: #EF6C00;
+  --background: #212121;
+  --background-secondary: #2D2D2D;
+  --text: #E0E0E0;
+  --error: #E57373;
+}
 
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: var(--background);
+  color: var(--text);
 }

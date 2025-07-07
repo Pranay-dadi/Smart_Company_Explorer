@@ -1,31 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CompanyCard = ({ company }) => {
+export const CompanyCard = ({ company }) => {
   if (!company) return null;
 
   return (
-    <Link
-      to={`/company/${encodeURIComponent(company.name)}`}
-      className="p-4 bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark border border-text/20 light:border-text-light/20 dark:border-text-dark/20 rounded-md shadow-sm hover:shadow-md hover:border-accent light:hover:border-accent-light dark:hover:border-accent-dark transition-shadow duration-200"
-      aria-label={`View details for ${company.name}`}
-    >
-      <div className="flex items-center mb-4">
-        <img
-          src={company.logo || 'https://via.placeholder.com/50'}
-          alt={`${company.name} logo`}
-          className="w-12 h-12 object-contain mr-3"
-        />
-        <h3 className="text-lg font-bold truncate"> {company.name}</h3>
-      </div>
-      <p className="text-text light:text-text-light dark:text-text-dark text-sm">{company.industry || 'N/A'}</p>
-      <p className="text-text light:text-text-light dark:text-text-dark text-sm">{company.location || 'N/A'}</p>
-      <p className="text-text light:text-text-light dark:text-text-dark text-sm mt-2 line-clamp-2">
-        {company.description || 'No description available'}
-      </p>
-      <span className="text-primary light:text-primary-light dark:text-primary-dark hover:underline text-sm mt-2 block">View Details</span>
-    </Link>
+    <div className="
+      inline-flex flex-col items-center gap-2
+      bg-card-light text-text-light
+      dark:bg-card-dark dark:text-text-dark
+      border border-primary/10 rounded-xl shadow-lg w-auto h-auto px-4 py-3
+      transition
+      ">
+      <img
+        src={company.logo || 'https://via.placeholder.com/50'}
+        alt={`${company.name} logo`}
+        className="w-14 h-14 object-contain rounded-full border border-primary/20 bg-white mb-2"
+      />
+      <Link
+        to={`/company/${encodeURIComponent(company.name)}`}
+        className="w-full text-center text-xl font-bold italic text-gray-700 dark:text-white hover:text-accent dark:hover:text-accent-dark transition-colors"
+        aria-label={`View details for ${company.name}`}
+      >
+        {company.name}
+      </Link>
+    </div>
   );
 };
 
-export default CompanyCard;
+const CompaniesGrid = ({ companies = [] }) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      {companies.map(company => (
+        <CompanyCard key={company.id || company._id || company.name} company={company} />
+      ))}
+    </div>
+  );
+};
+
+export default CompaniesGrid;

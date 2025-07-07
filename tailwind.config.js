@@ -8,31 +8,32 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          light: '#1E88E5', // Blue for light mode
-          dark: '#1565C0', // Darker blue for dark mode
-        },
-        secondary: {
-          light: '#4CAF50', // Green for light mode
-          dark: '#388E3C', // Darker green for dark mode
+          light: '#2563eb',
+          dark: '#1e40af',
         },
         accent: {
-          light: '#F57C00', // Orange for light mode
-          dark: '#EF6C00', // Slightly darker orange for dark mode
+          light: '#f59e42',
+          dark: '#ea580c',
         },
         background: {
-          light: '#F5F5F5', // Light gray for light mode
-          secondary_light: '#FFFFFF', // White for cards, headers in light mode
-          dark: '#212121', // Dark background for dark mode
-          secondary_dark: '#2D2D2D', // Lighter gray for cards in dark mode
+          light: '#ffffff',
+          dark: '#000000', // Black for dark mode background
+        },
+        card: {
+          light: '#FFD580', // Sunrise color for light mode cards
+          dark: '#374151',  // Gray-700 for dark mode cards
         },
         text: {
-          light: '#424242', // Dark gray for light mode
-          dark: '#E0E0E0', // Light gray for dark mode
+          light: '#374151', // Gray text for cards in light mode
+          dark: '#ffffff',  // White text for cards in dark mode
         },
         error: {
-          light: '#D32F2F', // Red for light mode
-          dark: '#E57373', // Lighter red for dark mode
+          light: '#ef4444',
+          dark: '#f87171',
         },
+        info: '#2563eb',
+        success: '#22c55e',
+        warning: '#f59e42',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

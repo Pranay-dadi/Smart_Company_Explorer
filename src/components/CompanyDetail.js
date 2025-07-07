@@ -22,22 +22,21 @@ const CompanyDetail = ({ company }) => {
 
   return (
     <div className="min-h-screen bg-background light:bg-background-light dark:bg-background-dark text-text light:text-text-light dark:text-text-dark flex flex-col">
-      {/* Top Bar (copied from HomePage) */}
-      <header className="bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark shadow sticky top-0 z-20">
-        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <h1 className="text-2xl font-bold">Smart Company Explorer</h1>
+      {/* Top Bar (consistent with HomePage) */}
+      <header className="bg-card-light text-gray-700 dark:bg-card-dark dark:text-white shadow sticky top-0 z-20 transition-colors">
+        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center gap-4">
+          {/* Centered heading */}
+          <div className="flex-1 flex justify-center order-2">
+            <h1 className="text-2xl font-bold text-center text-gray-700 dark:text-white">Smart Company Explorer</h1>
           </div>
-          <nav className="flex items-center gap-4">
+          {/* Navigation at right */}
+          <nav className="flex items-center gap-4 order-3">
             <NavLink
               to="/"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-md ${
-                  isActive
-                    ? 'bg-primary text-background-secondary light:bg-primary-light light:text-background-secondary_light dark:bg-primary-dark dark:text-background-secondary_dark'
-                    : 'hover:bg-accent hover:text-background-secondary light:hover:bg-accent-light light:hover:text-background-secondary_light dark:hover:bg-accent-dark dark:hover:text-background-secondary_dark'
-                }`
-              }
+              className="px-4 py-2 rounded-md transition-colors font-semibold
+                bg-white text-gray-700 dark:bg-black dark:text-white
+                hover:bg-orange-400 hover:text-gray-900
+                dark:hover:bg-white dark:hover:text-black"
               aria-label="Go to Home"
             >
               Home
@@ -45,11 +44,10 @@ const CompanyDetail = ({ company }) => {
             <NavLink
               to="/companies"
               className={({ isActive }) =>
-                `px-4 py-2 rounded-md ${
-                  isActive
-                    ? 'bg-primary text-background-secondary light:bg-primary-light light:text-background-secondary_light dark:bg-primary-dark dark:text-background-secondary_dark'
-                    : 'hover:bg-accent hover:text-background-secondary light:hover:bg-accent-light light:hover:text-background-secondary_light dark:hover:bg-accent-dark dark:hover:text-background-secondary_dark'
-                }`
+                `px-4 py-2 rounded-md transition-colors font-semibold
+                ${isActive
+                  ? 'bg-accent text-white dark:bg-accent-dark dark:text-white'
+                  : 'bg-white text-gray-700 dark:bg-black dark:text-white hover:bg-orange-400 hover:text-gray-900 dark:hover:bg-white dark:hover:text-black'}`
               }
               aria-label="Go to Companies"
             >
@@ -60,22 +58,24 @@ const CompanyDetail = ({ company }) => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-start py-8 px-2 md:px-8 w-full">
-        <div className="w-full max-w-5xl bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark shadow-lg rounded-xl p-8 min-h-[70vh]">
-          <div className="flex flex-col sm:flex-row items-center mb-8">
+      <main className="flex-1 flex flex-col items-center justify-start py-10 px-2 md:px-10 w-full">
+        <div className="w-full max-w-5xl bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark shadow-2xl rounded-2xl p-10 min-h-[70vh]">
+          <div className="flex flex-col sm:flex-row items-center mb-10">
             <img
               src={company.logo || 'https://via.placeholder.com/150'}
               alt={`${company.name} logo`}
-              className="w-36 h-36 object-contain mb-4 sm:mb-0 sm:mr-8"
+              className="w-40 h-40 object-contain mb-4 sm:mb-0 sm:mr-10 rounded-full border-4 border-primary/30 bg-white shadow-md"
             />
             <div>
-              <h2 className="text-4xl font-bold mb-2">{company.name}</h2>
+              <h2 className="text-5xl font-extrabold mb-3 text-primary transition-colors hover:text-orange-500 dark:hover:text-white">
+                {company.name}
+              </h2>
               {company.website && (
                 <a
                   href={company.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+                  className="text-accent hover:underline font-medium hover:text-orange-500 dark:hover:text-white transition-colors"
                   aria-label={`Visit ${company.name} website`}
                 >
                   Visit Website
@@ -105,7 +105,7 @@ const CompanyDetail = ({ company }) => {
           {/* Statistics below */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-3">Statistics</h3>
+              <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">Statistics</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-2">
                 <strong>Employees:</strong> {company.employees || 'N/A'}
               </p>
@@ -122,6 +122,11 @@ const CompanyDetail = ({ company }) => {
           </div>
         </div>
       </main>
+
+      {/* Footer (optional, for full consistency) */}
+      <footer className="bg-background-secondary light:bg-background-secondary_light dark:bg-background-secondary_dark py-4 text-center">
+        <p>© 2025 Smart Company Explorer. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

@@ -8,23 +8,29 @@
 
 
 :root {
-  --primary: #1E88E5;
-  --secondary: #4CAF50;
-  --accent: #F57C00;
-  --background: #F5F5F5;
-  --background-secondary: #FFFFFF;
-  --text: #424242;
-  --error: #D32F2F;
+  --primary: #2563eb;
+  --secondary: #10b981;
+  --accent: #f59e42;
+  --background: #f3f4f6;
+  --background-secondary: #ffffff;
+  --text: #22223b;
+  --error: #ef4444;
+  --info: #2563eb;
+  --success: #22c55e;
+  --warning: #f59e42;
 }
 
 .dark {
-  --primary: #1565C0;
-  --secondary: #388E3C;
-  --accent: #EF6C00;
-  --background: #212121;
-  --background-secondary: #2D2D2D;
-  --text: #E0E0E0;
-  --error: #E57373;
+  --primary: #1e40af;
+  --secondary: #047857;
+  --accent: #ea580c;
+  --background: #18181b;
+  --background-secondary: #27272a;
+  --text: #f4f4f5;
+  --error: #f87171;
+  --info: #2563eb;
+  --success: #22c55e;
+  --warning: #f59e42;
 }
 
 html, body, #root {

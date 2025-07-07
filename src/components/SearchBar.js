@@ -36,11 +36,11 @@ const SearchBar = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search companies or jobs..."
-        className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
+        className="w-full p-3 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background-secondary dark:bg-background-secondary_dark shadow-sm"
         aria-label="Search companies or jobs"
       />
       {suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white dark:bg-gray-800 border rounded-md mt-1 shadow-lg max-h-60 overflow-auto">
+        <ul className="absolute z-10 w-full bg-background-secondary dark:bg-background-secondary_dark border border-primary/10 rounded-lg mt-1 shadow-xl max-h-60 overflow-auto">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
@@ -49,7 +49,7 @@ const SearchBar = () => {
                 setSuggestions([]);
                 navigate(`/companies?query=${encodeURIComponent(suggestion)}`);
               }}
-              className="p-2 hover:bg-blue-100 dark:hover:bg-gray-700 cursor-pointer"
+              className="p-3 hover:bg-accent/10 dark:hover:bg-accent/20 cursor-pointer transition"
             >
               {suggestion}
             </li>
@@ -58,7 +58,7 @@ const SearchBar = () => {
       )}
       <button
         type="submit"
-        className="absolute right-0 top-0 p-3 text-white bg-blue-500 rounded-r-md hover:bg-blue-600"
+        className="absolute right-0 top-0 p-3 text-white bg-primary rounded-r-lg hover:bg-accent transition"
         aria-label="Submit search"
       >
         🔍

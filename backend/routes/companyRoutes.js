@@ -5,16 +5,17 @@ const mongoose = require('mongoose');
 
 router.get('/companies', async (req, res) => {
   try {
-    console.log('Fetching all companies...');
-    const companies = await Company.find().lean();
-    console.log('Raw Mongoose query result:', companies);
-    const rawData = await mongoose.connection.db.collection('companies').find().toArray();
-    console.log('Raw MongoDB data:', rawData);
+    const { query } = req.query;
+    let filter = {};
+    if (query) {
+      // Case-insensitive partial match on company name
+      filter.name = { $regex: query, $options: 'i' };
+    }
+    console.log('Fetching companies with filter:', filter);
+    const companies = await Company.find(filter).lean();
     if (!companies || companies.length === 0) {
-      console.log('No companies found in database or query failed');
       return res.status(200).json([]);
     }
-    console.log('Sending response:', companies);
     res.json(companies);
   } catch (err) {
     console.error('Error fetching companies:', err.stack);
